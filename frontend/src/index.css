@@ -1,0 +1,53 @@
+@import "tailwindcss"; /* import Tailwind CSS ทั้งหมดเข้ามาในโปรเจกต์ */
+
+/* กำหนด custom color theme Adventure Time */
+/* :root คือ CSS variables ระดับ global ทั้งเว็ปใช้ได้ */
+
+:root {
+  --color-jake: #FFD60A; /* สีเหลืองของ Jake */
+  --color-finn: #00B4D8; /* สีฟ้าของ Finn */
+  --color-bubblegum: #FF85A1; /* สีชมพูของ Princess Bubblegum */
+  --color-grass: #57CC99; /* สีเขียวของ Grass */
+  --color-dark: #0D1B2A; /* สีพื้นหลังกลางคืน */
+  --color-light: #F8F9FA; /* สีพื้นหลังกลางวัน */
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  box-sizing: border-box; /* ทำให้ width/height รวม padding และ border แล้ว */
+  margin: 0; /* ลบ margin เริ่มต้นของทุก element */
+  padding: 0; /* ลบ padding เริ่มต้นของทุก element */
+}
+/* ===== FONT ===== */
+
+ิbody {
+  font-family: 'Bangers', cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
+}
+
+/* ===== SMOOTH SCROLL ===== */
+/* smooth scroll เมื่อคลิก nav แล้วเลื่อนไปหา section อย่างนุ่มนวล */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+/* ปรับแต่งหน้าตา Scrollbar ให้เป็นเส้นขนาดเล็กและมีสีตามธีม */
+::webkit-scrollbar {
+  width: 6px; /* ความกว้างของ scrollbar */
+}
+
+/* กำหนดสีของรางที่ scroll thumb วิ่งอยู่ */
+::-webkit-scrollbar-track {
+  background: var(--color-dark); /* สีพื้นหลังของ scrollbar */
+}
+
+/* กำหนดสีของ thumb (ก้อนสี่เหลี่ยมที่เราจับลาก) */
+::-webkit-scrollbar-thumb {
+  background: var(--color-jake); /* สีของ scrollbar thumb */
+  border-radius: 3px; /* ทำให้ scrollbar thumb เป็นเส้นโค้ง */
+}
+
+/* เปลี่ยนสีเมื่อ hover (เมาส์ชี้) บน scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-finn); /* สีของ scrollbar thumb เมื่อ hover */
+}
