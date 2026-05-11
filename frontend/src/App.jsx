@@ -2,14 +2,19 @@
 // นี่คือ Component หลักของแอป ทุกอย่างจะถูกรวมมาที่นี่
 
 // นำเข้าข้อมูลจากไฟล์ portfolioData.js เพื่อใช้ใน Component นี้
-import { bmoCommands, projectPhilosophy } from './data/portfolioData' 
+// import { bmoCommands, projectPhilosophy } from './data/portfolioData' 
+
+// นำเข้า custom hook สำหรับจัดการ Dark/Light Mode
+import useTheme from "./hooks/useTheme"; 
 function App() {
-  console.log(bmoCommands)
-console.log(projectPhilosophy)
+
+// เรียกใช้ custom hook เพื่อได้ theme ปัจจุบันและฟังก์ชัน toggle
+const { theme, toggleTheme } = useTheme(); 
+
   return (
-    // div นี้คือ container ครอบทุกอย่าง
-    <div>
-      <h1>🎮 Portfolio กำลังสร้าง...</h1>
+    // เราจะใช้ theme และ toggleTheme ในส่วนต่างๆของแอป เช่น ปุ่มสลับโหมด หรือการตั้งค่า class สำหรับ Tailwind
+    <div className="min-h-screen bg-white dark:bg-gray-900"> 
+      {/* Section ต่างๆ จะมาอยู่ตรงนี้ใน Phase 10 */}
     </div>
   )
 }

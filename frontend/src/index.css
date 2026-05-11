@@ -1,5 +1,7 @@
 @import "tailwindcss"; /* import Tailwind CSS ทั้งหมดเข้ามาในโปรเจกต์ */
 
+@custom-variant dark (&:where(.dark, .dark *)); /* บอก Tailwind v4 ว่าให้ใช้ class "dark" บน <html> เพื่อเปิด dark mode */
+
 /* กำหนด custom color theme Adventure Time */
 /* :root คือ CSS variables ระดับ global ทั้งเว็ปใช้ได้ */
 
@@ -20,7 +22,7 @@
 }
 /* ===== FONT ===== */
 
-ิbody {
+body {
   font-family: 'Bangers', cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
 }
 
