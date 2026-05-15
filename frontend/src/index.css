@@ -5,16 +5,18 @@
 /* กำหนด custom color theme Adventure Time */
 /* :root คือ CSS variables ระดับ global ทั้งเว็ปใช้ได้ */
 
-:root {
-  --color-jake: #FFD60A; /* สีเหลืองของ Jake */
-  --color-finn: #00B4D8; /* สีฟ้าของ Finn */
-  --color-bubblegum: #FF85A1; /* สีชมพูของ Princess Bubblegum */
-  --color-grass: #57CC99; /* สีเขียวของ Grass */
-  --color-dark: #0D1B2A; /* สีพื้นหลังกลางคืน */
-  --color-light: #F8F9FA; /* สีพื้นหลังกลางวัน */
+@theme {
+  --color-jake: #ffd60a; /* สีเหลืองของ Jake */
+  --color-finn: #00b4d8; /* สีฟ้าของ Finn */
+  --color-bubblegum: #ff85a1; /* สีชมพูของ Princess Bubblegum */
+  --color-grass: #57cc99; /* สีเขียวของ Grass */
+  --color-dark: #0d1b2a; /* สีพื้นหลังกลางคืน */
+  --color-light: #f8f9fa; /* สีพื้นหลังกลางวัน */
 }
 
 /* ===== RESET & BASE ===== */
+/* ✅ ใส่ใน @layer base เพื่อให้ Tailwind utilities ชนะได้ */
+@layer base{
 * {
   box-sizing: border-box; /* ทำให้ width/height รวม padding และ border แล้ว */
   margin: 0; /* ลบ margin เริ่มต้นของทุก element */
@@ -23,13 +25,14 @@
 /* ===== FONT ===== */
 
 body {
-  font-family: 'Bangers', cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
+  font-family: "Bangers", cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
 }
 
 /* ===== SMOOTH SCROLL ===== */
 /* smooth scroll เมื่อคลิก nav แล้วเลื่อนไปหา section อย่างนุ่มนวล */
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable; /* ✅ จองพื้นที่ scrollbar ไว้ทั้งสองฝั่งเสมอ */
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
@@ -52,4 +55,5 @@ html {
 /* เปลี่ยนสีเมื่อ hover (เมาส์ชี้) บน scrollbar thumb */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-finn); /* สีของ scrollbar thumb เมื่อ hover */
+}
 }
