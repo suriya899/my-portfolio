@@ -60,6 +60,7 @@
 
 import Navbar from "./components/ui/Navbar";
 import Hero from "./components/sections/Hero"; // ← เพิ่มบรรทัดนี้
+import About from "./components/sections/About";
 
 function App() {
   return (
@@ -70,9 +71,11 @@ function App() {
       <Hero />
 
       {/* Section จำลองที่เหลือ — ยังคงไว้ทดสอบ Navbar scroll */}
-      <section id="about" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      {/* <section id="about" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">About Section</h1>
-      </section>
+      </section> */}
+
+      <About />
 
       <section id="skills" className="min-h-screen flex items-center justify-center">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Skills Section</h1>
