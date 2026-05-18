@@ -57,29 +57,73 @@
 // }
 
 // export default App;
+// import Navbar from "./components/ui/Navbar";
+// import Hero from "./components/sections/Hero"; // ← เพิ่มบรรทัดนี้
+// import About from "./components/sections/About";
+// import Skills from "./components/sections/Skills";
 
+// function App() {
+//   return (
+//     <div className="min-h-screen bg-white dark:bg-dark transition-colors">
+//       <Navbar />
+
+//       {/* ✅ เปลี่ยน placeholder เป็น Hero จริงๆ */}
+//       <Hero />
+
+//       {/* Section จำลองที่เหลือ — ยังคงไว้ทดสอบ Navbar scroll */}
+//       {/* <section id="about" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+//         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">About Section</h1>
+//       </section> */}
+
+//       <About />
+
+//       {/* <section id="skills" className="min-h-screen flex items-center justify-center">
+//         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Skills Section</h1>
+//       </section> */}
+
+//       <Skills />
+
+//       <section id="projects" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+//         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Projects Section</h1>
+//       </section>
+
+//       <section id="contact" className="min-h-screen flex items-center justify-center">
+//         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Contact Section</h1>
+//       </section>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+import { useEffect } from "react";
 import Navbar from "./components/ui/Navbar";
-import Hero from "./components/sections/Hero"; // ← เพิ่มบรรทัดนี้
+import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
+import Skills from "./components/sections/Skills";
 
 function App() {
+
+  // บอก browser ว่าเราจัดการ scroll เอง อย่า restore ให้
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    // เลื่อนขึ้นบนสุดทุกครั้งที่โหลดหน้า
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white dark:bg-dark transition-colors">
       <Navbar />
 
-      {/* ✅ เปลี่ยน placeholder เป็น Hero จริงๆ */}
       <Hero />
-
-      {/* Section จำลองที่เหลือ — ยังคงไว้ทดสอบ Navbar scroll */}
-      {/* <section id="about" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white">About Section</h1>
-      </section> */}
 
       <About />
 
-      <section id="skills" className="min-h-screen flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Skills Section</h1>
-      </section>
+      <Skills />
 
       <section id="projects" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Projects Section</h1>
