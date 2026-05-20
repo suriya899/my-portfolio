@@ -3,7 +3,6 @@
 @custom-variant dark (&:where(.dark, .dark *)); /* บอก Tailwind v4 ว่าให้ใช้ class "dark" บน <html> เพื่อเปิด dark mode */
 
 /* กำหนด custom color theme Adventure Time */
-/* :root คือ CSS variables ระดับ global ทั้งเว็ปใช้ได้ */
 
 @theme {
   --color-jake: #ffd60a; /* สีเหลืองของ Jake */

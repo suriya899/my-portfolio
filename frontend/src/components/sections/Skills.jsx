@@ -1,4 +1,4 @@
-// frontend/src/components/sections/Skills.jsx
+// Skills.jsx
 
 import { useState, useRef, useEffect } from "react";
 // useState → เก็บ input ที่ user พิมพ์ + history ของ terminal

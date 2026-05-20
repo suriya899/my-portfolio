@@ -1,4 +1,4 @@
-// frontend/src/components/sections/Projects.jsx
+// Hero.jsx
 
 // import motion สำหรับ animation
 import { motion } from "framer-motion";
