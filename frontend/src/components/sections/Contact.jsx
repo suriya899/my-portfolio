@@ -47,23 +47,55 @@ export default function Contact() {
         }
 
         setIsLoading(true);
+        // try{
+        //     // 🔜 Phase 11: จะเปลี่ยน URL นี้เป็น Backend จริง
+        //     // ตอนนี้ simulate ส่งสำเร็จก่อน
+        //     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        //     toast.success("Message sent! I'll get back to you soon 🌟");
+
+        //     // Reset form หลังส่งสำเร็จ
+        //     setFormData({ name: "", email: "", message: "" });
+        // } catch (error) {
+        //     toast.error("Something went wrong. Please try again!");
+        // } finally {
+        //     // ไม่ว่าจะ success หรือ error ก็ปิด loading
+        //     setIsLoading(false);
+        // }
+
         try{
-            // 🔜 Phase 11: จะเปลี่ยน URL นี้เป็น Backend จริง
-            // ตอนนี้ simulate ส่งสำเร็จก่อน
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // ส่ง POST request ไปที่ Backend จริง
+            const response = await fetch("http://localhost:3001/api/contact", {
+                method: "POST",
+                // บอก Backend ว่าเราส่งข้อมูลแบบ JSON
+                headers: { "Content-Type": "application/json" },
+                // แปลง object → JSON string ก่อนส่ง
+                body: JSON.stringify(formData),
 
-            toast.success("Message sent! I'll get back to you soon 🌟");
+            });
+            // แปลง response กลับมาเป็น object เพื่ออ่านข้อมูล
+            const data = await response.json();
 
-            // Reset form หลังส่งสำเร็จ
-            setFormData({ name: "", email: "", message: "" });
-        } catch (error) {
-            toast.error("Something went wrong. Please try again!");
-        } finally {
-            // ไม่ว่าจะ success หรือ error ก็ปิด loading
-            setIsLoading(false);
-        }
-        };
+            // response.ok = true เมื่อ status 200-299 (เช่น 201 Created)
+            if (response.ok) {
+                toast.success("Message sent! I'll get back to you soon 🌟");
+                // Reset form หลังส่งเสร็จ
+                setFormData({ name: "", email: "", message: "" });
+            } else {
+                // Backend ตอบ error กลับมา เช่น 400 validation fail
+                toast.error(data.error || "Something went wrong. Please try again!");
+                }
 
+            } catch (error) {
+                // Network error เช่น Backend ไม่ได้รัน
+                toast.error("Cannot connect to server. Please try again!");
+
+            } finally {
+                // ไม่ว่าจะ success หรือ error ก็ปิด loading
+                setIsLoading(false);
+            }
+    };
+        
         return (
             <section
                 id="contact"
