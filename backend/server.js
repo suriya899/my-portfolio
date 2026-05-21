@@ -4,6 +4,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 
+import contactRoutes from "./src/routes/contactRoutes.js"; //
+
 // สร้าง Express app
 const app = express();
 
@@ -23,6 +25,10 @@ app.use(
 );
 
 // ===== Routes =====
+
+// ✅ เพิ่มบรรทัดนี้ — ทุก request ที่ขึ้นต้นด้วย /api/contact จะไปที่ contactRoutes
+app.use("/api/contact", contactRoutes);
+
 // Health check — ใช้ทดสอบว่า server ทำงานอยู่
 app.get("/health", (req, res) => {
     res.json({
