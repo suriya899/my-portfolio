@@ -1,3 +1,4 @@
+//server.js
 // โหลดค่าจากไฟล์ .env เข้ามาใช้งาน (ต้องเรียกก่อนสุด)
 import "dotenv/config";
 
@@ -18,10 +19,10 @@ app.use(express.json());
 
 // อนุญาตให้ frontend (port 5173) คุยกับ backend ได้
 app.use(
-    cors({
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST"],
-    })
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  }),
 );
 
 // ===== Routes =====
@@ -31,15 +32,15 @@ app.use("/api/contact", contactRoutes);
 
 // Health check — ใช้ทดสอบว่า server ทำงานอยู่
 app.get("/health", (req, res) => {
-    res.json({
-        status: "ok",
-        message: "Portfolio API is running!",
-        timestamp: new Date().toISOString(),
-    });
+  res.json({
+    status: "ok",
+    message: "Portfolio API is running!",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // ===== Start Server =====
 app.listen(PORT, () => {
-    console.log(`✅ Server is running on http://localhost:${PORT}`);
-    console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-})
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+});

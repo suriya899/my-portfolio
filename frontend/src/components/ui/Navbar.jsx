@@ -1,3 +1,4 @@
+//Navbar.jsx
 // นำเข้า useState สำหรับ toggle เมนู mobile
 // นำเข้า useEffect สำหรับ detect section ที่กำลัง scroll อยู่
 import { useState, useEffect } from "react";
@@ -7,7 +8,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 // นำเข้า custom hook useTheme ที่เราสร้างไว้ใน Phase 3
-import  useTheme  from "../../hooks/useTheme";
+import useTheme from "../../hooks/useTheme";
 
 // นำเข้าข้อมูล navLinks จาก portfolioData
 import { navLinks } from "../../data/portfolioData";
@@ -32,7 +33,8 @@ function Navbar() {
     // ฟังก์ชันนี้จะถูกเรียกเมื่อมีการ scroll
     const handleScroll = () => {
       // วนลูปผ่าน navLinks เพื่อเช็คแต่ละ section ไหนอยู่ใน viewport
-      for (const link of navLinks) { // navLinks คือ array ที่เรานำเข้ามาจาก portfolioData ซึ่งมีข้อมูลของแต่ละ section
+      for (const link of navLinks) {
+        // navLinks คือ array ที่เรานำเข้ามาจาก portfolioData ซึ่งมีข้อมูลของแต่ละ section
         // หา element ของ section นั้นๆ ด้วย id
         const section = document.getElementById(link.id);
 
@@ -89,9 +91,13 @@ function Navbar() {
           <button
             onClick={() => scrollToSection("hero")}
             // ใช้สีเหลือง Jake Yellow เป็น brand color
-            className="text-xl font-bold text-jake hover:opacity-80 transition-opacity"
+            className="text-3xl font-bold text-jake hover:opacity-80 transition-opacity tracking-widest
+            "
+            style={{
+              textShadow: "var(--content-shadow)",
+            }}
           >
-            Jack.dev
+            jack.port
           </button>
 
           {/* ---- Desktop Navigation Links (ซ่อนบน mobile) ---- */}
@@ -101,7 +107,7 @@ function Navbar() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`text-sm font-medium transition-colors duration-200 
+                className={`text-2xl font-medium transition-colors duration-200 
                                     ${
                                       // ถ้า link นี้คือ active section ให้ใช้สีเหลือง
                                       // ถ้าไม่ใช่ ใช้สีปกติ

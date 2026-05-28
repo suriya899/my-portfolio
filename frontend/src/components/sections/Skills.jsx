@@ -35,27 +35,25 @@ export default function Skills() {
   // ref ไว้ชี้ไปที่ input element → ใช้ focus() ได้
   const inputRef = useRef(null);
 
-//   // ref ไว้ชี้ไปที่ส่วนล่างสุดของ terminal → ใช้ scroll ลงล่าง
-//   const bottomRef = useRef(null);
+  //   // ref ไว้ชี้ไปที่ส่วนล่างสุดของ terminal → ใช้ scroll ลงล่าง
+  //   const bottomRef = useRef(null);
 
-// ✅ เพิ่มแทน — ชี้ไปที่กล่อง terminal
-const terminalRef = useRef(null);
+  // ✅ เพิ่มแทน — ชี้ไปที่กล่อง terminal
+  const terminalRef = useRef(null);
 
-//   // ทุกครั้งที่ history เปลี่ยน → scroll ลงล่างอัตโนมัติ
-//   useEffect(() => {
-//     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [history]);
+  //   // ทุกครั้งที่ history เปลี่ยน → scroll ลงล่างอัตโนมัติ
+  //   useEffect(() => {
+  //     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  //   }, [history]);
 
-// ✅ ใหม่ — เลื่อนแค่ใน terminal box
-useEffect(() => {
-  if (terminalRef.current) {
-    terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    // scrollHeight = ความสูงทั้งหมดของเนื้อหาใน box
-    // scrollTop = เลื่อนไปที่ล่างสุดของ box นั้น
-  }
-}, [history]);
-
-
+  // ✅ ใหม่ — เลื่อนแค่ใน terminal box
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+      // scrollHeight = ความสูงทั้งหมดของเนื้อหาใน box
+      // scrollTop = เลื่อนไปที่ล่างสุดของ box นั้น
+    }
+  }, [history]);
 
   // ฟังก์ชันแปลงคำสั่งเป็น output
   function handleCommand(cmd) {
@@ -64,14 +62,14 @@ useEffect(() => {
 
     // ✅ กรณีพิเศษ: clear → ล้าง history แล้วจบเลย
     if (trimmed === "clear") {
-        setHistory([
-            {
-                type: "output",
-                text: ['BMO Terminal v1.0 🤖', 'พิมพ์ "help" เพื่อดูคำสั่งทั้งหมด'],
-            },
-        ]);
-        setInput("");
-        return; // ← หยุดที่นี่ ไม่ต้องทำต่อ
+      setHistory([
+        {
+          type: "output",
+          text: ["BMO Terminal v1.0 🤖", 'พิมพ์ "help" เพื่อดูคำสั่งทั้งหมด'],
+        },
+      ]);
+      setInput("");
+      return; // ← หยุดที่นี่ ไม่ต้องทำต่อ
     }
 
     // หา output จาก bmoCommands ตาม key ที่ตรงกับที่พิมพ์
@@ -98,11 +96,23 @@ useEffect(() => {
   return (
     <section
       id="skills"
-      className="min-h-screen bg-white dark:bg-dark py-24 px-6"
+      // className="min-h-screen bg-white dark:bg-dark py-24 px-6"
+      className="min-h-screen py-24 px-6"
       // คลิกที่ section → focus input ของ terminal ทันที
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="max-w-3xl mx-auto">
+      {/* <div className="max-w-3xl mx-auto"> */}
+      {/* ใส่ Glassmorphism  */}
+      <div
+        className="
+        max-w-5xl mx-auto
+        backdrop-blur-md
+       bg-white/30 dark:bg-dark/40
+        rounded-3xl
+        p-10
+        border border-white/30 dark:border-white/10
+      "
+      >
         {/* === ส่วน 1: skillPhilosophy === */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,12 +122,28 @@ useEffect(() => {
           className="mb-16"
         >
           {/* หัวข้อ Section */}
-          <h2 className="text-3xl font-bold text-dark dark:text-jake mb-6">
+          <h2
+            className="text-7xl font-bold text-jake mb-6 tracking-widest"
+            // style={{
+            // textShadow: "2px 2px 0px white, -2px -2px 0px white, 2px -2px 0px white, -2px 2px 0px white"
+            // }}
+            style={{
+              textShadow: "var(--hero-shadow)",
+            }}
+          >
             {skillPhilosophy.title}
           </h2>
 
           {/* paragraph จาก portfolioData */}
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+          <p
+            className="text-gray-600 dark:text-gray-300 leading-relaxed text-2xl tracking-wider"
+            // style={{
+            // textShadow: "1px 1px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white"
+            // }}
+            style={{
+              textShadow: "var(--content-shadow)",
+            }}
+          >
             {skillPhilosophy.description}
           </p>
         </motion.div>
@@ -141,7 +167,7 @@ useEffect(() => {
               </div>
 
               {/* ชื่อ Terminal + ไอคอน */}
-              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-2xl tracking-wider">
                 <Terminal size={14} />
                 <span>bmo-terminal</span>
               </div>
@@ -149,8 +175,8 @@ useEffect(() => {
 
             {/* --- พื้นที่แสดงผล Terminal --- */}
             <div
-            ref={terminalRef}
-              className="bg-dark text-grass font-mono text-sm p-4 h-72 overflow-y-auto"
+              ref={terminalRef}
+              className="bg-dark text-grass font-mono text-xl p-4 h-72 overflow-y-auto"
               // h-72 → ความสูงคงที่ / overflow-y-auto → scroll ได้
             >
               {/* วน render ทุก item ใน history */}
@@ -172,7 +198,6 @@ useEffect(() => {
                   )}
                 </div>
               ))}
-
             </div>
 
             {/* --- Input bar ด้านล่าง --- */}
@@ -188,7 +213,7 @@ useEffect(() => {
                 onKeyDown={handleKeyDown}
                 placeholder="พิมพ์คำสั่ง เช่น help, whoisjack, skills..."
                 className="
-                  flex-1 bg-transparent text-grass font-mono text-sm
+                  flex-1 bg-transparent text-grass font-mono text-xl
                   outline-none placeholder-gray-600
                 "
                 // autoFocus → focus input ทันทีที่ section โหลด
@@ -198,7 +223,7 @@ useEffect(() => {
           </div>
 
           {/* คำแนะนำเล็กๆ ใต้ terminal */}
-          <p className="text-center text-gray-400 text-xs mt-3">
+          <p className="text-center text-gray-200 text-xl mt-6 tracking-wider">
             💡 ลองพิมพ์: help · hello · whoisjack · skills · stack · contact
           </p>
         </motion.div>

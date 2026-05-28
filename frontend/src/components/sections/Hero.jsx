@@ -1,5 +1,4 @@
 // Hero.jsx
-// Section แรกที่ผู้เยี่ยมชมเห็น — ต้องดึงดูดสายตาทันที
 // ใช้ framer-motion สำหรับ animation เข้าหน้า
 
 import { motion } from "framer-motion";
@@ -25,21 +24,46 @@ const Hero = () => {
       /* สีพื้นหลัง light/dark */
       /* padding ซ้ายขวา */
       /* เว้นพื้นที่ Navbar */
+      // className="
+      //           min-h-screen
+      //           flex items-center
+      //           justify-center
+      //           relative
+      //           bg-white dark:bg-dark
+      //           px-6
+      //           pt-20
+      //       "
+
+      //ทำพืนหลังต้นไม้ เลยลบ bg-white dark:bg-dark ออก
       className="
-                min-h-screen          
-                flex items-center     
-                justify-center        
-                relative              
-                bg-white dark:bg-dark 
-                px-6                  
-                pt-20                 
-            "
+                  min-h-screen          
+                  flex items-center     
+                  justify-center        
+                  relative              
+                  px-6                  
+                  pt-20                 
+                "
     >
       {/* กล่องหลัก — จัดเนื้อหาให้อยู่กึ่งกลาง */}
-      <div className="max-w-3xl w-full text-center">
+      {/* <div className="max-w-3xl w-full text-center"> */}
+
+      {/* กล่องหลัก — จัดเนื้อหาให้อยู่กึ่งกลาง และ  ใส่ Glassmorphism ให้กล่องเนื้อหา*/}
+      <div
+        className="
+        max-w-5xl w-full text-center
+        backdrop-blur-md
+       bg-white/30 dark:bg-dark/40
+        rounded-3xl
+        p-10
+        border border-white/30 dark:border-white/10
+        "
+      >
         {/* 👋 บรรทัดทักทาย — เด้งเข้ามาก่อน */}
         <motion.p
-          className="text-finn font-mono text-lg mb-3" /* font-mono ให้ดูเหมือนโค้ด */
+          className="text-finn font-mono text-3xl mb-3" /* font-mono ให้ดูเหมือนโค้ด */
+          style={{
+            textShadow: "var(--content-shadow)",
+          }}
           initial={{ opacity: 0, y: -20 }} /* เริ่มจากด้านบน โปร่งใส */
           animate={{ opacity: 1, y: 0 }} /* เลื่อนลงมา + ปรากฏ */
           transition={{ duration: 0.5 }}
@@ -50,11 +74,14 @@ const Hero = () => {
         {/* 🌟 ชื่อใหญ่ — element ที่สำคัญที่สุด */}
         <motion.h1
           className="
-            text-5xl md:text-7xl   /* ใหญ่มาก — responsive */
+            text-5xl md:text-8xl   /* ใหญ่มาก — responsive */
             font-black             /* หนาสุด */
             text-dark dark:text-white
-            mb-4
+            mb-4 tracking-widest
           "
+          style={{
+            textShadow: "var(--hero-shadow)",
+          }}
           initial={{ opacity: 0, scale: 0.8 }} /* เริ่มเล็กกว่าปกติ */
           animate={{ opacity: 1, scale: 1 }} /* ขยายมาขนาดจริง */
           transition={{
@@ -74,7 +101,11 @@ const Hero = () => {
             text-bubblegum         
             font-semibold
             mb-6
+            tracking-wider
           "
+          style={{
+            textShadow: "var(--content-shadow)",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -91,8 +122,12 @@ const Hero = () => {
             text-gray-500 dark:text-gray-400
             max-w-xl mx-auto       
             mb-10
-            leading-relaxed        
+            leading-relaxed
+            tracking-widest        
           "
+          style={{
+            textShadow: "var(--content-shadow)",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -121,7 +156,12 @@ const Hero = () => {
               hover:scale-105        /* ขยายเล็กน้อยเมื่อ hover */
               transition-transform duration-200
               cursor-pointer
+              tracking-wider
             "
+            style={{
+              textShadow:
+                "1px 1px 0px white, -1px -1px 0px white, 1px -1px 0px white, -1px 1px 0px white",
+            }}
           >
             View My Work
           </button>
@@ -140,7 +180,11 @@ const Hero = () => {
               hover:text-white
               transition-all duration-200
               cursor-pointer
+              tracking-wider
             "
+            style={{
+              textShadow: "var(--content-shadow)",
+            }}
           >
             Contact Me
           </button>
@@ -149,9 +193,8 @@ const Hero = () => {
 
       {/* ⬇️ Scroll Indicator — บอกให้ผู้ใช้รู้ว่าเลื่อนลงได้ */}
       <motion.div
-
-      /* absolute bottom-8  ติดขอบล่าง */
-      /* left-1/2 -translate-x-1/2 จัดกึ่งกลางแนวนอน */
+        /* absolute bottom-8  ติดขอบล่าง */
+        /* left-1/2 -translate-x-1/2 จัดกึ่งกลางแนวนอน */
         className="
           absolute bottom-8         
           left-1/2 -translate-x-1/2 /* จัดกึ่งกลางแนวนอน */
@@ -160,14 +203,12 @@ const Hero = () => {
           cursor-pointer
         "
         onClick={() => scrollTo("about")} /* คลิกแล้วเลื่อนไป About */
-        animate={{ y: [0, 8, 0] }}        /* animation กระเด้งขึ้นลง */
+        animate={{ y: [0, 8, 0] }} /* animation กระเด้งขึ้นลง */
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
         <span className="text-xs mb-1 font-mono">scroll</span>
         <ArrowDown size={16} />
       </motion.div>
-
-
     </section>
   );
 };

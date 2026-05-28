@@ -1,3 +1,4 @@
+/* index.css */
 @import "tailwindcss"; /* import Tailwind CSS ทั้งหมดเข้ามาในโปรเจกต์ */
 
 @custom-variant dark (&:where(.dark, .dark *)); /* บอก Tailwind v4 ว่าให้ใช้ class "dark" บน <html> เพื่อเปิด dark mode */
@@ -15,44 +16,65 @@
 
 /* ===== RESET & BASE ===== */
 /* ✅ ใส่ใน @layer base เพื่อให้ Tailwind utilities ชนะได้ */
-@layer base{
-* {
-  box-sizing: border-box; /* ทำให้ width/height รวม padding และ border แล้ว */
-  margin: 0; /* ลบ margin เริ่มต้นของทุก element */
-  padding: 0; /* ลบ padding เริ่มต้นของทุก element */
-}
-/* ===== FONT ===== */
+@layer base {
+  * {
+    box-sizing: border-box; /* ทำให้ width/height รวม padding และ border แล้ว */
+    margin: 0; /* ลบ margin เริ่มต้นของทุก element */
+    padding: 0; /* ลบ padding เริ่มต้นของทุก element */
+  }
 
-body {
-  font-family: "Bangers", cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
-}
+  :root {
+    /* light mode: ตัวอักษรสีดำ → เงาสีขาวเพื่อให้เห็นขอบ */
+    --hero-shadow:
+      3px 3px 0px white, -3px -3px 0px white, 3px -3px 0px white,
+      -3px 3px 0px white;
 
-/* ===== SMOOTH SCROLL ===== */
-/* smooth scroll เมื่อคลิก nav แล้วเลื่อนไปหา section อย่างนุ่มนวล */
-html {
-  scroll-behavior: smooth;
-  scrollbar-gutter: stable; /* ✅ จองพื้นที่ scrollbar ไว้ทั้งสองฝั่งเสมอ */
-}
+    --content-shadow:
+      1px 1px 0px white, -1px -1px 0px white, 1px -1px 0px white,
+      -1px 1px 0px white;
+  }
+  .dark {
+    --hero-shadow:
+      3px 3px 0px rgba(0, 0, 0, 0.8), -3px -3px 0px rgba(0, 0, 0, 0.8),
+      3px -3px 0px rgba(0, 0, 0, 0.8), -3px 3px 0px rgba(0, 0, 0, 0.8);
 
-/* ===== CUSTOM SCROLLBAR ===== */
-/* ปรับแต่งหน้าตา Scrollbar ให้เป็นเส้นขนาดเล็กและมีสีตามธีม */
-::webkit-scrollbar {
-  width: 6px; /* ความกว้างของ scrollbar */
-}
+    --content-shadow:
+      1px 1px 0px rgba(0, 0, 0, 0.8), -3px -3px 0px rgba(0, 0, 0, 0.8),
+      1px -1px 0px rgba(0, 0, 0, 0.8), -3px 3px 0px rgba(0, 0, 0, 0.8);
+  }
 
-/* กำหนดสีของรางที่ scroll thumb วิ่งอยู่ */
-::-webkit-scrollbar-track {
-  background: var(--color-dark); /* สีพื้นหลังของ scrollbar */
-}
+  /* ===== FONT ===== */
 
-/* กำหนดสีของ thumb (ก้อนสี่เหลี่ยมที่เราจับลาก) */
-::-webkit-scrollbar-thumb {
-  background: var(--color-jake); /* สีของ scrollbar thumb */
-  border-radius: 3px; /* ทำให้ scrollbar thumb เป็นเส้นโค้ง */
-}
+  body {
+    font-family: "Bangers", cursive; /* ใช้ฟอนต์ Bangers จาก Google Fonts */
+  }
 
-/* เปลี่ยนสีเมื่อ hover (เมาส์ชี้) บน scrollbar thumb */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-finn); /* สีของ scrollbar thumb เมื่อ hover */
-}
+  /* ===== SMOOTH SCROLL ===== */
+  /* smooth scroll เมื่อคลิก nav แล้วเลื่อนไปหา section อย่างนุ่มนวล */
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable; /* ✅ จองพื้นที่ scrollbar ไว้ทั้งสองฝั่งเสมอ */
+  }
+
+  /* ===== CUSTOM SCROLLBAR ===== */
+  /* ปรับแต่งหน้าตา Scrollbar ให้เป็นเส้นขนาดเล็กและมีสีตามธีม */
+  ::webkit-scrollbar {
+    width: 6px; /* ความกว้างของ scrollbar */
+  }
+
+  /* กำหนดสีของรางที่ scroll thumb วิ่งอยู่ */
+  ::-webkit-scrollbar-track {
+    background: var(--color-dark); /* สีพื้นหลังของ scrollbar */
+  }
+
+  /* กำหนดสีของ thumb (ก้อนสี่เหลี่ยมที่เราจับลาก) */
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-jake); /* สีของ scrollbar thumb */
+    border-radius: 3px; /* ทำให้ scrollbar thumb เป็นเส้นโค้ง */
+  }
+
+  /* เปลี่ยนสีเมื่อ hover (เมาส์ชี้) บน scrollbar thumb */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-finn); /* สีของ scrollbar thumb เมื่อ hover */
+  }
 }
