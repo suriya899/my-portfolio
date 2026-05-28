@@ -65,7 +65,9 @@ export default function Contact() {
 
     try {
       // ส่ง POST request ไปที่ Backend จริง
-      const response = await fetch("http://localhost:3001/api/contact", {
+      // const response = await fetch("http://localhost:3001/api/contact", {
+      // ขึ้น neon server 
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
         // บอก Backend ว่าเราส่งข้อมูลแบบ JSON
         headers: { "Content-Type": "application/json" },

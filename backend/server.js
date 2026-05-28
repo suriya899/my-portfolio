@@ -18,12 +18,18 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 // อนุญาตให้ frontend (port 5173) คุยกับ backend ได้
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-  }),
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST"],
+//   }),
+// );
+
+//ต่อกับ vercel เพิ่ม
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  methods: ["GET", "POST"],
+}));
 
 // ===== Routes =====
 
